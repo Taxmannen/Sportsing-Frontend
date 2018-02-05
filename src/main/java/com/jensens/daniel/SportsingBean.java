@@ -24,14 +24,9 @@ public class SportsingBean implements Serializable {
 	}
 	
 	public void createMatch() {
-		target.request(MediaType.APPLICATION_XML).post(Entity.xml(new Match(getMatches().size(), "aa")));
-		System.out.println("Test " + target.path("Sport").request(MediaType.APPLICATION_XML).get(new GenericType<String>(){}));
+		target.request(MediaType.APPLICATION_XML).post(Entity.xml(new Match(getMatches().size(), sport)));
 	}
-	
-	/*public void editMatch() {
-		
-	}*/
-	
+
 	public void deleteMatch(Match m) {
 		target.path("{id}").resolveTemplate("id", m.getId()).request(MediaType.APPLICATION_XML).delete();
 	}
