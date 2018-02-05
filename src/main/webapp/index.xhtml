@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+	<h:body>
+		<h:form>
+			<p:dataTable id="getTable" value="#{sportsingBean.matches}" var="bean">
+				<p:column headerText="ID">
+					<h:outputText value="#{bean.id}" />
+				</p:column>
+				<p:column headerText="Sport">
+					<h:outputText value="#{bean.sport}" />
+				</p:column>
+				
+				<p:column headerText ="Delete">
+					<center>
+						<h:commandButton id="Delete" value="Delete" style="width:100px">
+		   					<p:ajax event="click" listener="#{sportsingBean.deleteMatch(bean)}" update="getTable" />
+						</h:commandButton>
+					</center>
+				</p:column>
+				
+			</p:dataTable>
+		</h:form>
+		  
+		<h:form>
+			<p:dataTable id="addtable" value="#{sportsingBean}" var="bean" >
+			<p:column headerText="Sport">
+				<h:inputText name="sport" value="#{sportsingBean.sport}" style="width:100%" /> 
+			</p:column>
+			<p:column headerText = "Add">
+				<center>
+					<h:commandButton id="add" value="Add" action="#{bean.createMatch()}" style="width:100px" />
+				</center>
+			</p:column>
+			</p:dataTable>
+		</h:form>
+		
+	</h:body>
+</html>
